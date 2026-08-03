@@ -1,0 +1,27 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-GRAPH-001
+  name: Application dependencies must be acyclic
+  description: Applications and components must not participate in circular runtime or build dependencies.
+  owner: solution-architecture
+  version: 1.0.0
+  tags: [coupling, topology]
+spec:
+  target:
+    nodeTypes: [Application, ApplicationComponent]
+  evaluation:
+    phase: GRAPH
+    evaluatorType: GRAPH_QUERY
+    query:
+      mode: acyclic
+      relationshipTypes: [DEPENDS_ON, CALLS]
+      failMessage: The node participates in a circular dependency.
+  policy:
+    severity: CRITICAL
+    enforcement: BLOCK
+    onUnknown: QUARANTINE
+  result:
+    violationType: CYCLIC_DEPENDENCY
+    remediation:
+      description: Break the cycle using dependency inversion, an event boundary, an anti-corruption layer, or service consolidation.

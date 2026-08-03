@@ -1,0 +1,30 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-IAC-001
+  name: Container images must use immutable versions
+  description: Dockerfiles must not reference the mutable latest image tag because deployments become irreproducible.
+  owner: platform-architecture
+  version: 1.0.0
+  tags: [iac, containers, supply-chain]
+spec:
+  target:
+    nodeTypes: [Application, ApplicationComponent]
+  evaluation:
+    phase: EVIDENCE
+    evaluatorType: IAC_POLICY
+    query:
+      includeGlobs: ["**/Dockerfile", "**/Dockerfile.*"]
+      excludeGlobs: ["**/.git/**", "**/node_modules/**"]
+      mustExist: false
+      forbidRegex: ["(?im)^\\s*FROM\\s+[^\\s]+:latest(?:\\s|$)"]
+      fileMode: ALL
+      failMessage: At least one Dockerfile uses the mutable latest tag.
+  policy:
+    severity: HIGH
+    enforcement: BLOCK
+    onUnknown: WARN
+  result:
+    violationType: NON_REPRODUCIBLE_DEPLOYMENT
+    remediation:
+      description: Pin every base image and runtime image to an immutable semantic version or digest.

@@ -1,0 +1,29 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #172033; background: #f4f6fa; }
+body { margin: 0; }
+header, main { max-width: 1200px; margin: auto; padding: 24px; }
+header { background: #172033; color: white; max-width: none; }
+header > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
+.toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+.toolbar input, .toolbar select { padding: 10px; border: 1px solid #c9d1df; border-radius: 8px; }
+.toolbar input { flex: 1; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.card, .node, .relationship { background: white; border: 1px solid #dce2ec; border-radius: 10px; padding: 12px; }
+.graph { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.node h3 { margin: 0 0 6px; }
+.node small { color: #59657a; overflow-wrap: anywhere; }
+.badge { display: inline-block; padding: 3px 8px; border-radius: 999px; background: #edf1f7; font-size: 12px; margin-right: 5px; }
+.relationship { margin-bottom: 8px; overflow-wrap: anywhere; }
+.error { color: #9a1b1b; background: #fff0f0; padding: 16px; border-radius: 8px; }
+h2 { margin-top: 28px; }
+.table-wrapper { overflow-x: auto; background: white; border: 1px solid #dce2ec; border-radius: 10px; }
+.fitness-table { width: 100%; border-collapse: collapse; min-width: 920px; }
+.fitness-table th, .fitness-table td { padding: 10px 12px; border-bottom: 1px solid #e6eaf0; text-align: left; vertical-align: top; }
+.fitness-table th { background: #f7f9fc; font-size: 13px; }
+.status { display: inline-block; border-radius: 999px; padding: 3px 8px; font-size: 12px; font-weight: 700; background: #edf1f7; }
+.status-fail, .status-error { background: #ffe8e8; color: #9a1b1b; }
+.status-unknown, .status-stale { background: #fff4d6; color: #7a5200; }
+.status-waived { background: #ede7ff; color: #52329a; }
+.status-pass { background: #e4f7ea; color: #176b35; }
+.node-fitnessviolation { border-left: 5px solid #9a1b1b; }
+.node-fitnessfunction { border-left: 5px solid #4158a6; }
+.node-architecturewaiver { border-left: 5px solid #6f4aa8; }

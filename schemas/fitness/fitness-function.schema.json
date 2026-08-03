@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architecture.company/schemas/fitness-function.schema.json",
+  "title": "Architecture Fitness Function",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "metadata", "spec"],
+  "properties": {
+    "apiVersion": {"const": "architecture.company/v1"},
+    "kind": {"const": "FitnessFunction"},
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "description", "owner", "version"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^FF-[A-Z0-9]+-[0-9]{3,}$"},
+        "name": {"type": "string", "minLength": 5},
+        "description": {"type": "string", "minLength": 20},
+        "owner": {"type": "string", "minLength": 2},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "evaluation", "policy", "result"],
+      "properties": {
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodeTypes"],
+          "properties": {
+            "nodeTypes": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+            "selectors": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "fields": {"$ref": "#/$defs/conditionMap"},
+                "attributes": {"$ref": "#/$defs/conditionMap"}
+              }
+            }
+          }
+        },
+        "evaluation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["phase", "evaluatorType", "query"],
+          "properties": {
+            "phase": {"enum": ["EVIDENCE", "SEMANTIC", "GRAPH", "RUNTIME", "DOCUMENTATION", "COMPOSITE"]},
+            "evaluatorType": {"enum": ["STATIC_ASSERTION", "FILE_QUERY", "SCHEMA_QUERY", "IAC_POLICY", "GRAPH_QUERY", "RUNTIME_THRESHOLD", "SEMANTIC_ASSERTION", "COMPOSITE", "LLM_ASSISTED"]},
+            "requiredEvidence": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "query": {"type": "object"}
+          }
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["severity", "enforcement"],
+          "properties": {
+            "severity": {"enum": ["INFO", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+            "enforcement": {"enum": ["BLOCK", "QUARANTINE", "WARN", "ADVISORY", "OBSERVE"]},
+            "onUnknown": {"enum": ["BLOCK", "QUARANTINE", "WARN", "ADVISORY", "OBSERVE", "IGNORE"]},
+            "effectiveFrom": {"type": "string", "format": "date"},
+            "effectiveUntil": {"type": "string", "format": "date"},
+            "appliesTo": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "lifecycle": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+                "architectureState": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+              }
+            }
+          }
+        },
+        "result": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["violationType", "remediation"],
+          "properties": {
+            "violationType": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+            "remediation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["description"],
+              "properties": {
+                "description": {"type": "string", "minLength": 10},
+                "documentationRef": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "conditionMap": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/condition"}
+    },
+    "condition": {
+      "oneOf": [
+        {"type": ["string", "number", "integer", "boolean", "null"]},
+        {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 1,
+          "properties": {
+            "equals": {},
+            "notEquals": {},
+            "in": {"type": "array"},
+            "notIn": {"type": "array"},
+            "exists": {"type": "boolean"},
+            "regex": {"type": "string"},
+            "contains": {},
+            "gte": {"type": "number"},
+            "lte": {"type": "number"}
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

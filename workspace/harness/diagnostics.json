@@ -1,0 +1,20 @@
+{
+  "diagnostics": [],
+  "generatedAt": "2026-08-02T23:52:34.432040+00:00",
+  "summary": {
+    "acceptedNodes": 0,
+    "acceptedRelationships": 0,
+    "blocks": 0,
+    "fitnessDefinitions": 4,
+    "fitnessEvaluations": 4,
+    "fitnessFailures": 0,
+    "fitnessUnknown": 0,
+    "fitnessWaived": 0,
+    "quarantineDiagnostics": 0,
+    "quarantineNodes": 0,
+    "quarantineRelationships": 0,
+    "rejectedNodes": 0,
+    "rejectedRelationships": 0,
+    "warnings": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "relationships": {
+    "DECOMPOSES_TO": [{"source": ["Capability", "BusinessService", "Application", "ApplicationComponent"], "target": ["Capability", "BusinessService", "ApplicationComponent"]}],
+    "SUPPORTS": [{"source": ["Application", "ApplicationService", "ApplicationComponent"], "target": ["Capability", "BusinessService", "Product", "ValueStream"]}],
+    "REQUIRES": [{"source": ["*"], "target": ["*"]}],
+    "REALIZES": [{"source": ["BusinessService", "ApplicationService", "Application"], "target": ["Capability", "BusinessService"]}],
+    "PROVIDES": [{"source": ["Application", "ApplicationComponent"], "target": ["ApplicationService", "BusinessService"]}],
+    "CONSUMES": [{"source": ["Application", "ApplicationComponent", "ApplicationService"], "target": ["ApplicationService", "CanonicalDataEntity"]}],
+    "PART_OF": [{"source": ["*"], "target": ["*"]}],
+    "IMPLEMENTS": [{"source": ["Application", "ApplicationComponent", "Infrastructure"], "target": ["ApplicationService", "TechCategory", "ArchitectureState"]}],
+    "DEPENDS_ON": [{"source": ["*"], "target": ["*"]}],
+    "CALLS": [{"source": ["Application", "ApplicationComponent", "ApplicationService"], "target": ["Application", "ApplicationComponent", "ApplicationService"]}],
+    "USES": [{"source": ["*"], "target": ["TechCategory", "Infrastructure", "CanonicalDataEntity", "Document"]}],
+    "HOSTS": [{"source": ["Infrastructure"], "target": ["Application", "ApplicationComponent", "ApplicationService"]}],
+    "READS": [{"source": ["Application", "ApplicationComponent", "ApplicationService"], "target": ["CanonicalDataEntity"]}],
+    "WRITES": [{"source": ["Application", "ApplicationComponent", "ApplicationService"], "target": ["CanonicalDataEntity"]}],
+    "BELONGS_TO": [{"source": ["*"], "target": ["DataDomain", "Application", "Product", "ValueStream", "Capability"]}],
+    "DESCRIBES": [{"source": ["Document"], "target": ["*"]}],
+    "APPLIES_TO": [{"source": ["FitnessFunction"], "target": ["*"]}],
+    "ENABLES": [{"source": ["*"], "target": ["*"]}],
+    "AFFECTS": [{"source": ["FitnessViolation"], "target": ["*"]}],
+    "INSTANCE_OF": [{"source": ["FitnessViolation"], "target": ["FitnessFunction"]}],
+    "WAIVES": [{"source": ["ArchitectureWaiver"], "target": ["FitnessViolation", "FitnessFunction"]}],
+    "JUSTIFIED_BY": [{"source": ["ArchitectureWaiver", "FitnessViolation"], "target": ["Document"]}]
+  }
+}

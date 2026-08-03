@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "views": [
+    {"id": "strategic", "name": "Visão estratégica", "nodeTypes": ["Capability", "BusinessService", "Product", "ValueStream", "ArchitectureState"]},
+    {"id": "capabilities", "name": "Visão de capacidades", "nodeTypes": ["Capability", "BusinessService", "Application"]},
+    {"id": "services", "name": "Visão de serviços", "nodeTypes": ["BusinessService", "ApplicationService", "Application"]},
+    {"id": "applications", "name": "Visão de aplicações", "nodeTypes": ["Application", "ApplicationComponent", "TechCategory"]},
+    {"id": "infrastructure", "name": "Visão de infraestrutura", "nodeTypes": ["Application", "ApplicationComponent", "Infrastructure", "TechCategory"]},
+    {"id": "data", "name": "Visão de dados", "nodeTypes": ["DataDomain", "CanonicalDataEntity", "Application", "ApplicationComponent"]},
+    {"id": "roadmap", "name": "Visão de roadmap", "nodeTypes": ["ArchitectureState", "Application", "TechCategory", "Product"]},
+    {"id": "fitness", "name": "Visão de conformidade arquitetural", "nodeTypes": ["FitnessFunction", "FitnessViolation", "ArchitectureWaiver", "Application", "ApplicationComponent", "Infrastructure", "ApplicationService"]}
+  ]
+}

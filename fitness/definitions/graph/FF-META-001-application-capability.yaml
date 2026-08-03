@@ -1,0 +1,32 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-META-001
+  name: Applications must support business architecture
+  description: Every active application must support at least one governed capability or business service.
+  owner: enterprise-architecture
+  version: 1.0.0
+  tags: [metamodel, business-alignment]
+spec:
+  target:
+    nodeTypes: [Application]
+  evaluation:
+    phase: GRAPH
+    evaluatorType: GRAPH_QUERY
+    query:
+      mode: relationshipCardinality
+      relationship: SUPPORTS
+      direction: OUT
+      targetNodeTypes: [Capability, BusinessService]
+      minimum: 1
+      failMessage: The application is not connected to a governed capability or business service.
+  policy:
+    severity: HIGH
+    enforcement: QUARANTINE
+    onUnknown: QUARANTINE
+    appliesTo:
+      lifecycle: [ACTIVE, PLANNED]
+  result:
+    violationType: METAMODEL_INTEGRITY
+    remediation:
+      description: Map the application to an existing LeanIX capability or business service and add a SUPPORTS relationship.
