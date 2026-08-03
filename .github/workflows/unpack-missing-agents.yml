@@ -1,0 +1,79 @@
+name: Install missing Claude agents
+
+on:
+  push:
+    branches:
+      - agent/initial-architecture-twin-mvp
+    paths:
+      - ".github/workflows/unpack-missing-agents.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  install-agents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/initial-architecture-twin-mvp
+          fetch-depth: 0
+
+      - name: Reconstruct and verify agents archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          tr -d '\n' < .bootstrap-agents/missing-agents.b64 | base64 --decode > /tmp/missing-agents.zip
+          echo "f48c0e23ec3907db7b445c3bb3fe32c0a01867b2c65a9adf5deec7bd86744b9e  /tmp/missing-agents.zip" | sha256sum --check --strict
+
+      - name: Install agent definitions
+        shell: bash
+        run: |
+          set -euo pipefail
+          unzip -oq /tmp/missing-agents.zip -d .
+
+      - name: Validate complete agent topology
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          expected = {
+              'twin-supervisor',
+              'evidence-orchestrator', 'code-cartographer', 'infra-cartographer',
+              'data-cartographer', 'runtime-cartographer', 'documentation-cartographer',
+              'pipeline-cartographer', 'wiki-compiler-orchestrator',
+              'relationship-inference', 'entity-classifier', 'entity-mapper',
+              'purpose-inference', 'conflict-detector', 'abstention-controller',
+              'semantic-modeling-orchestrator', 'business-mapper', 'capability-mapper',
+              'domain-mapper', 'duplication-detector', 'impact-analyser',
+              'semantic-validator', 'graph-view-orchestrator', 'graph-view-builder',
+              'fitness-orchestrator', 'fitness-dsl-author', 'evidence-fitness-evaluator',
+              'semantic-fitness-evaluator', 'graph-fitness-evaluator',
+              'runtime-fitness-evaluator', 'waiver-validator', 'fitness-conflict-detector',
+          }
+          root = Path('.claude/agents')
+          files = sorted(root.glob('*.md'))
+          actual = {p.stem for p in files}
+          assert actual == expected, f'missing={sorted(expected-actual)} extra={sorted(actual-expected)}'
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              assert text.startswith('---\n'), f'invalid frontmatter: {path}'
+              match = re.search(r'^name:\s*(.+)$', text, re.MULTILINE)
+              assert match and match.group(1).strip() == path.stem, f'name mismatch: {path}'
+          print(f'Validated {len(files)} Claude agents')
+          PY
+
+      - name: Remove bootstrap artifacts and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .bootstrap-agents
+          rm -f .github/workflows/unpack-missing-agents.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add complete Claude agent topology"
+          git push origin HEAD:refs/heads/agent/initial-architecture-twin-mvp
