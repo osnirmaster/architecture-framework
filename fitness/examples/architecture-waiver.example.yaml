@@ -1,0 +1,15 @@
+apiVersion: architecture.company/v1
+kind: ArchitectureWaiver
+metadata:
+  id: AW-ARCH-001
+  name: Temporary waiver for legacy payment application
+  owner: solution-architecture
+spec:
+  fitnessFunctionIds: [FF-GRAPH-001]
+  targetIds: [urn:corp-arch:application:payments:legacy-payment]
+  justification: The dependency cycle is accepted temporarily while the legacy payment flow is decomposed according to ADR-0042.
+  approvedBy: architecture-review-board
+  validFrom: 2026-08-01
+  expiresAt: 2026-11-30
+  adrRef: docs/adr/ADR-0042.md
+  ticketRef: ARCH-1234

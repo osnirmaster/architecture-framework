@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "enabled": true,
+  "definitionDirectories": [
+    "fitness/definitions"
+  ],
+  "waiverDirectories": [
+    "fitness/waivers"
+  ],
+  "phasesRunByHarness": [
+    "SEMANTIC",
+    "GRAPH",
+    "COMPOSITE"
+  ],
+  "defaultUnknownEnforcement": "QUARANTINE",
+  "defaultErrorEnforcement": "BLOCK",
+  "publishFunctionNodes": true,
+  "publishViolationNodes": true,
+  "failOnInvalidDefinition": true,
+  "resultsPath": "workspace/harness/fitness-results.json"
+}

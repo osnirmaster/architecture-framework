@@ -1,0 +1,36 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-API-001
+  name: Public APIs must declare OAuth2
+  description: Application services exposed publicly must declare an OAuth2 security scheme in their OpenAPI contract.
+  owner: security-architecture
+  version: 1.0.0
+  tags: [api, security]
+spec:
+  target:
+    nodeTypes: [ApplicationService]
+    selectors:
+      attributes:
+        exposure:
+          equals: PUBLIC
+  evaluation:
+    phase: EVIDENCE
+    evaluatorType: SCHEMA_QUERY
+    requiredEvidence: [OPENAPI]
+    query:
+      includeGlobs: ["**/openapi.yaml", "**/openapi.yml", "**/openapi.json", "**/*openapi*.yaml", "**/*openapi*.json"]
+      documentMode: ANY
+      assertions:
+        - path: components.securitySchemes.oauth2.type
+          operator: equals
+          value: oauth2
+      failMessage: No OpenAPI document declares components.securitySchemes.oauth2.type as oauth2.
+  policy:
+    severity: CRITICAL
+    enforcement: BLOCK
+    onUnknown: QUARANTINE
+  result:
+    violationType: API_SECURITY
+    remediation:
+      description: Declare an OAuth2 security scheme and reference it in every operation exposed publicly.

@@ -1,0 +1,37 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-RUNTIME-001
+  name: Public API p95 latency must remain below 300 ms
+  description: Public application services must keep their measured p95 response latency at or below 300 milliseconds.
+  owner: reliability-architecture
+  version: 1.0.0
+  tags: [runtime, slo, latency]
+spec:
+  target:
+    nodeTypes: [ApplicationService]
+    selectors:
+      attributes:
+        exposure:
+          equals: PUBLIC
+  evaluation:
+    phase: RUNTIME
+    evaluatorType: RUNTIME_THRESHOLD
+    requiredEvidence: [APM_METRIC]
+    query:
+      metricsGlob: workspace/evidence/**/runtime/**/*.json
+      targetIdPath: targetId
+      metricPath: metrics.latencyP95Ms
+      observedAtPath: observedAt
+      operator: lte
+      threshold: 300
+      maxAgeHours: 24
+      failMessage: The observed p95 latency exceeds 300 ms.
+  policy:
+    severity: HIGH
+    enforcement: WARN
+    onUnknown: WARN
+  result:
+    violationType: PERFORMANCE_SLO
+    remediation:
+      description: Investigate downstream latency, saturation, database access, caching and timeout budgets.

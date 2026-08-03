@@ -1,0 +1,433 @@
+{
+  "definitionCount": 4,
+  "definitionsHash": "68ee2a668bad193cd2c4d589f76fa1f6ad5e62e472d095240e2a0dcc5e84f2c5",
+  "diagnostics": [],
+  "effectiveDefinitionCount": 7,
+  "evaluations": [
+    {
+      "definitionPath": "fitness/definitions/graph/FF-GRAPH-001-no-dependency-cycle.yaml",
+      "definitionVersion": "1.0.0",
+      "enforcement": "BLOCK",
+      "evaluatedAt": "2026-08-02T23:52:34.419413+00:00",
+      "evaluatorType": "GRAPH_QUERY",
+      "evidenceRefs": [],
+      "expected": {
+        "nodeTypes": [
+          "Application",
+          "ApplicationComponent"
+        ]
+      },
+      "fitnessFunctionId": "FF-GRAPH-001",
+      "fitnessFunctionName": "Application dependencies must be acyclic",
+      "id": "FE-ff-graph-001-63a47a0d23e3",
+      "message": "Nenhum nó corresponde ao target da fitness function.",
+      "observedValue": 0,
+      "onUnknown": "QUARANTINE",
+      "phase": "GRAPH",
+      "remediation": {
+        "description": "Break the cycle using dependency inversion, an event boundary, an anti-corruption layer, or service consolidation."
+      },
+      "severity": "CRITICAL",
+      "status": "NOT_APPLICABLE",
+      "targetId": "urn:corp-arch:unknown:fitness:not-applicable",
+      "targetType": "Unknown",
+      "violationType": "CYCLIC_DEPENDENCY"
+    },
+    {
+      "definitionPath": "fitness/definitions/graph/FF-META-001-application-capability.yaml",
+      "definitionVersion": "1.0.0",
+      "enforcement": "QUARANTINE",
+      "evaluatedAt": "2026-08-02T23:52:34.419413+00:00",
+      "evaluatorType": "GRAPH_QUERY",
+      "evidenceRefs": [],
+      "expected": {
+        "nodeTypes": [
+          "Application"
+        ]
+      },
+      "fitnessFunctionId": "FF-META-001",
+      "fitnessFunctionName": "Applications must support business architecture",
+      "id": "FE-ff-meta-001-63a47a0d23e3",
+      "message": "Nenhum nó corresponde ao target da fitness function.",
+      "observedValue": 0,
+      "onUnknown": "QUARANTINE",
+      "phase": "GRAPH",
+      "remediation": {
+        "description": "Map the application to an existing LeanIX capability or business service and add a SUPPORTS relationship."
+      },
+      "severity": "HIGH",
+      "status": "NOT_APPLICABLE",
+      "targetId": "urn:corp-arch:unknown:fitness:not-applicable",
+      "targetType": "Unknown",
+      "violationType": "METAMODEL_INTEGRITY"
+    },
+    {
+      "definitionPath": "fitness/definitions/semantic/FF-APP-001-application-owner.yaml",
+      "definitionVersion": "1.0.0",
+      "enforcement": "WARN",
+      "evaluatedAt": "2026-08-02T23:52:34.419413+00:00",
+      "evaluatorType": "SEMANTIC_ASSERTION",
+      "evidenceRefs": [],
+      "expected": {
+        "nodeTypes": [
+          "Application"
+        ]
+      },
+      "fitnessFunctionId": "FF-APP-001",
+      "fitnessFunctionName": "Applications must declare an owner",
+      "id": "FE-ff-app-001-63a47a0d23e3",
+      "message": "Nenhum nó corresponde ao target da fitness function.",
+      "observedValue": 0,
+      "onUnknown": "WARN",
+      "phase": "SEMANTIC",
+      "remediation": {
+        "description": "Add at least one accountable owner to the application metadata and synchronize it with LeanIX."
+      },
+      "severity": "HIGH",
+      "status": "NOT_APPLICABLE",
+      "targetId": "urn:corp-arch:unknown:fitness:not-applicable",
+      "targetType": "Unknown",
+      "violationType": "GOVERNANCE"
+    },
+    {
+      "definitionPath": "fitness/definitions/composite/FF-APP-002-governed-application.yaml",
+      "definitionVersion": "1.0.0",
+      "enforcement": "QUARANTINE",
+      "evaluatedAt": "2026-08-02T23:52:34.419413+00:00",
+      "evaluatorType": "COMPOSITE",
+      "evidenceRefs": [],
+      "expected": {
+        "nodeTypes": [
+          "Application"
+        ]
+      },
+      "fitnessFunctionId": "FF-APP-002",
+      "fitnessFunctionName": "Applications must be owned and business aligned",
+      "id": "FE-ff-app-002-63a47a0d23e3",
+      "message": "Nenhum nó corresponde ao target da fitness function.",
+      "observedValue": 0,
+      "onUnknown": "QUARANTINE",
+      "phase": "COMPOSITE",
+      "remediation": {
+        "description": "Resolve ownership and capability or business-service mapping before publication."
+      },
+      "severity": "HIGH",
+      "status": "NOT_APPLICABLE",
+      "targetId": "urn:corp-arch:unknown:fitness:not-applicable",
+      "targetType": "Unknown",
+      "violationType": "GOVERNANCE_READINESS"
+    }
+  ],
+  "generatedAt": "2026-08-02T23:52:34.419413+00:00",
+  "graphArtifacts": {
+    "nodes": [
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-APP-002",
+          "enforcement": "QUARANTINE",
+          "evaluatorType": "COMPOSITE",
+          "phase": "COMPOSITE",
+          "severity": "HIGH",
+          "targetNodeTypes": [
+            "Application"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-app-002",
+        "description": "An application is governable only when ownership and business architecture mapping are both valid.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-app-002",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Applications must be owned and business aligned",
+        "owners": [
+          "enterprise-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/composite/FF-APP-002-governed-application.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      },
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-API-001",
+          "enforcement": "BLOCK",
+          "evaluatorType": "SCHEMA_QUERY",
+          "phase": "EVIDENCE",
+          "severity": "CRITICAL",
+          "targetNodeTypes": [
+            "ApplicationService"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-api-001",
+        "description": "Application services exposed publicly must declare an OAuth2 security scheme in their OpenAPI contract.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-api-001",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Public APIs must declare OAuth2",
+        "owners": [
+          "security-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/evidence/FF-API-001-public-api-oauth2.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      },
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-IAC-001",
+          "enforcement": "BLOCK",
+          "evaluatorType": "IAC_POLICY",
+          "phase": "EVIDENCE",
+          "severity": "HIGH",
+          "targetNodeTypes": [
+            "Application",
+            "ApplicationComponent"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-iac-001",
+        "description": "Dockerfiles must not reference the mutable latest image tag because deployments become irreproducible.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-iac-001",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Container images must use immutable versions",
+        "owners": [
+          "platform-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/evidence/FF-IAC-001-no-latest-container-tag.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      },
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-GRAPH-001",
+          "enforcement": "BLOCK",
+          "evaluatorType": "GRAPH_QUERY",
+          "phase": "GRAPH",
+          "severity": "CRITICAL",
+          "targetNodeTypes": [
+            "Application",
+            "ApplicationComponent"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-graph-001",
+        "description": "Applications and components must not participate in circular runtime or build dependencies.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-graph-001",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Application dependencies must be acyclic",
+        "owners": [
+          "solution-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/graph/FF-GRAPH-001-no-dependency-cycle.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      },
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-META-001",
+          "enforcement": "QUARANTINE",
+          "evaluatorType": "GRAPH_QUERY",
+          "phase": "GRAPH",
+          "severity": "HIGH",
+          "targetNodeTypes": [
+            "Application"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-meta-001",
+        "description": "Every active application must support at least one governed capability or business service.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-meta-001",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Applications must support business architecture",
+        "owners": [
+          "enterprise-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/graph/FF-META-001-application-capability.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      },
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-RUNTIME-001",
+          "enforcement": "WARN",
+          "evaluatorType": "RUNTIME_THRESHOLD",
+          "phase": "RUNTIME",
+          "severity": "HIGH",
+          "targetNodeTypes": [
+            "ApplicationService"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-runtime-001",
+        "description": "Public application services must keep their measured p95 response latency at or below 300 milliseconds.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-runtime-001",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Public API p95 latency must remain below 300 ms",
+        "owners": [
+          "reliability-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/runtime/FF-RUNTIME-001-api-p95.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      },
+      {
+        "architectureState": "CURRENT",
+        "attributes": {
+          "definitionId": "FF-APP-001",
+          "enforcement": "WARN",
+          "evaluatorType": "SEMANTIC_ASSERTION",
+          "phase": "SEMANTIC",
+          "severity": "HIGH",
+          "targetNodeTypes": [
+            "Application"
+          ],
+          "version": "1.0.0"
+        },
+        "canonicalName": "ff-app-001",
+        "description": "Every application must identify at least one accountable technical or business owner.",
+        "id": "urn:corp-arch:fitness-function:fitness:ff-app-001",
+        "inference": {
+          "agent": "fitness-engine",
+          "confidence": 1.0,
+          "epistemicStatus": "EXPLICIT",
+          "rationale": "Definição declarativa versionada."
+        },
+        "lifecycle": "ACTIVE",
+        "metamodelOrigin": "TWIN_EXTENSION",
+        "name": "Applications must declare an owner",
+        "owners": [
+          "enterprise-architecture"
+        ],
+        "provenance": [
+          {
+            "commit": "WORKTREE",
+            "extractor": "fitness-engine",
+            "lineEnd": 1,
+            "lineStart": 1,
+            "path": "fitness/definitions/semantic/FF-APP-001-application-owner.yaml",
+            "repository": "corporate-architecture-twin"
+          }
+        ],
+        "type": "FitnessFunction"
+      }
+    ],
+    "relationships": []
+  },
+  "loadedDefinitionCount": 7,
+  "phases": [
+    "COMPOSITE",
+    "GRAPH",
+    "SEMANTIC"
+  ],
+  "schemaVersion": "1.0.0",
+  "summary": {
+    "definitions": 4,
+    "effectiveDefinitions": 7,
+    "error": 0,
+    "evaluations": 4,
+    "fail": 0,
+    "invalidDefinitions": 0,
+    "invalidWaivers": 0,
+    "loadedDefinitions": 7,
+    "notApplicable": 4,
+    "pass": 0,
+    "stale": 0,
+    "unknown": 0,
+    "waived": 0
+  },
+  "violations": [],
+  "waiverCount": 0
+}

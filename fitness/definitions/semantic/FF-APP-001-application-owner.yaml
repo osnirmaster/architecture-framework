@@ -1,0 +1,34 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-APP-001
+  name: Applications must declare an owner
+  description: Every application must identify at least one accountable technical or business owner.
+  owner: enterprise-architecture
+  version: 1.0.0
+  tags: [governance, ownership]
+spec:
+  target:
+    nodeTypes: [Application]
+  evaluation:
+    phase: SEMANTIC
+    evaluatorType: SEMANTIC_ASSERTION
+    query:
+      assertions:
+        - path: owners
+          operator: exists
+          value: true
+        - path: owners
+          operator: notEquals
+          value: []
+      failMessage: The application does not declare an accountable owner.
+  policy:
+    severity: HIGH
+    enforcement: WARN
+    onUnknown: WARN
+    appliesTo:
+      lifecycle: [PLANNED, ACTIVE, PHASE_OUT]
+  result:
+    violationType: GOVERNANCE
+    remediation:
+      description: Add at least one accountable owner to the application metadata and synchronize it with LeanIX.

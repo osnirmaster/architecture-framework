@@ -1,0 +1,26 @@
+apiVersion: architecture.company/v1
+kind: FitnessFunction
+metadata:
+  id: FF-APP-002
+  name: Applications must be owned and business aligned
+  description: An application is governable only when ownership and business architecture mapping are both valid.
+  owner: enterprise-architecture
+  version: 1.0.0
+  tags: [composite, governance]
+spec:
+  target:
+    nodeTypes: [Application]
+  evaluation:
+    phase: COMPOSITE
+    evaluatorType: COMPOSITE
+    query:
+      allOf: [FF-APP-001, FF-META-001]
+      failMessage: Ownership or business architecture alignment is incomplete.
+  policy:
+    severity: HIGH
+    enforcement: QUARANTINE
+    onUnknown: QUARANTINE
+  result:
+    violationType: GOVERNANCE_READINESS
+    remediation:
+      description: Resolve ownership and capability or business-service mapping before publication.

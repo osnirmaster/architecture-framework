@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "1.0.0",
+  "idPrefix": "urn:corp-arch",
+  "nodeTypes": {
+    "Capability": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "BusinessService": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "ApplicationService": {
+      "origin": "LEANIX_FACTSHEET",
+      "subtypes": [
+        "API",
+        "EVENT",
+        "BATCH",
+        "UI",
+        "DOMAIN_SERVICE",
+        "INTEGRATION_SERVICE"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "Application": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "ApplicationComponent": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "Application",
+        "TechCategory"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "TechCategory": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "Infrastructure": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "TechCategory"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "DataDomain": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "Document"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "CanonicalDataEntity": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "Document"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "Document": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "ArchitectureState": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "Product": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "ValueStream": {
+      "origin": "LEANIX_FACTSHEET",
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "FitnessViolation": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "Document"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "FitnessFunction": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "Document"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    },
+    "ArchitectureWaiver": {
+      "origin": "TWIN_EXTENSION",
+      "mapsTo": [
+        "Document"
+      ],
+      "required": [
+        "name",
+        "description",
+        "architectureState"
+      ]
+    }
+  },
+  "architectureStates": [
+    "CURRENT",
+    "TRANSITION",
+    "TARGET",
+    "RETIRED",
+    "UNKNOWN"
+  ],
+  "lifecycles": [
+    "PLANNED",
+    "ACTIVE",
+    "PHASE_OUT",
+    "END_OF_LIFE",
+    "UNKNOWN"
+  ],
+  "epistemicStatuses": [
+    "EXPLICIT",
+    "INFERRED",
+    "AMBIGUOUS",
+    "CONFLICTED"
+  ]
+}

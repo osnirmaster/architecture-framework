@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Corporate Architecture Twin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Corporate Architecture Twin</h1>
+    <p>Snapshot file-based da arquitetura corporativa e sua conformidade arquitetural.</p>
+  </header>
+  <main>
+    <section class="toolbar">
+      <label>Tipo <select id="type-filter"><option value="">Todos</option></select></label>
+      <input id="search" type="search" placeholder="Buscar nome, descrição ou ID" />
+    </section>
+    <section id="summary" class="summary"></section>
+
+    <section>
+      <h2>Conformidade arquitetural</h2>
+      <div id="fitness-summary" class="summary"></div>
+      <div class="table-wrapper">
+        <table class="fitness-table">
+          <thead>
+            <tr><th>Status</th><th>Fitness function</th><th>Alvo</th><th>Severidade</th><th>Enforcement</th><th>Mensagem</th></tr>
+          </thead>
+          <tbody id="fitness-results"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Nós</h2>
+      <div id="graph" class="graph" aria-label="Grafo simplificado"></div>
+    </section>
+    <section>
+      <h2>Relações</h2>
+      <div id="relationships"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
